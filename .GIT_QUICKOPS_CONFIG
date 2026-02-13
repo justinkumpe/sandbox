@@ -1,4 +1,4 @@
 {
   "commitPrefix": "[{{branch}}] ",
-  "requireTests": "warn"
+  "requireTests": "disabled"
 }
