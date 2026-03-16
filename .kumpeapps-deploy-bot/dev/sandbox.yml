@@ -11,7 +11,7 @@ docker_compose: |
         - "3000:3000"
       environment:
         NODE_ENV: development
-        DATABASE_URL: mysql://user:pass@db:3306/mydbbbbshlp8912
+        DATABASE_URL: mysql://user:pass@db:3306/mydbbbbshlp89123
 caddy:
   sandbox.conf: |
     sandbox.dev.kumpe.app {
