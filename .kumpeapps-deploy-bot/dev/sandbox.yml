@@ -10,6 +10,8 @@ docker_compose: |
       container_name: sandbox-website
       ports:
         - "80:80"
+      environment:
+        DATABASE_PASSWORD: ${DB_PASSWORD_SECRET}
       restart: unless-stopped
       healthcheck:
         test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
@@ -22,6 +24,8 @@ caddy:
     sandbox.dev.kumpe.app {
       reverse_proxy localhost:80
     }
+env_mappings:
+  DATABASE_PASSWORD: DB_PASSWORD_SECRET
 deploy_rules:
   - environment: dev
     branches:
