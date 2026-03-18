@@ -22,7 +22,7 @@ docker_compose: |
 caddy:
   sandbox.conf: |
     sandbox.dev.kumpe.app {
-      reverse_proxy localhost:80
+      reverse_proxy localhost:808
     }
 env_mappings:
   DATABASE_PASSWORD: DB_PASSWORD_SECRET
