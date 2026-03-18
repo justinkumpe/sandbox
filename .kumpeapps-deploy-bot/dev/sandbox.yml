@@ -6,7 +6,7 @@ domains:
 docker_compose: |
   services:
     web:
-      image: myapp:latest
+      image: ghcr.io/kumpeapps/managed-nebula/client:latest
       ports:
         - "3000:3000"
       environment:
