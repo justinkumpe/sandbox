@@ -1,5 +1,5 @@
 deployment_type: docker
-assigned_username: justinkumpe
+assigned_username: justinkumpe 
 vm_hostname: dev-sandbox
 domains:
   - sandbox.dev.kumpe.app
