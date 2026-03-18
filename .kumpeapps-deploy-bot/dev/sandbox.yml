@@ -19,6 +19,23 @@ docker_compose: |
         timeout: 10s
         retries: 3
         start_period: 10s
+
+    client:
+      image: ghcr.io/kumpeapps/managed-nebula/client:kumpeapps
+      restart: unless-stopped
+      cap_add:
+        - NET_ADMIN
+      devices:
+        - /dev/net/tun
+      environment:
+        SERVER_URL: https://nebula.kumpedns.us:4200/api
+        CLIENT_TOKEN: ${NEBULA_CLIENT_TOKEN}
+        POLL_INTERVAL_HOURS: 1
+      volumes:
+        - ./nebula-config:/etc/nebula
+        - ./nebula-data:/var/lib/nebula
+        - /etc/timezone:/etc/timezone:ro
+      network_mode: host
 caddy:
   sandbox.conf: |
     sandbox.dev.kumpe.app {
@@ -26,6 +43,7 @@ caddy:
     }
 env_mappings:
   DATABASE_PASSWORD: DB_PASSWORD_SECRET
+  NEBULA_CLIENT_TOKEN: DEV_NEBULA_CLIENT_TOKEN
 deploy_rules:
   - environment: dev
     branches:
