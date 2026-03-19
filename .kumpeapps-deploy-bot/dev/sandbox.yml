@@ -39,6 +39,7 @@ docker_compose: |
 caddy:
   sandbox.conf: |
     sandbox.dev.kumpe.app {
+      import cloudns_dns
       reverse_proxy 172.16.18.11
     }
 env_mappings:
