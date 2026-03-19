@@ -40,10 +40,10 @@ caddy:
   sandbox.conf: |
     sandbox.dev.kumpe.app {
       import cloudns_dns
-      reverse_proxy 172.16.18.11
+      reverse_proxy 172.16.18.13
     }
 env_mappings:
-  DATABASE_PASSWORD: DB_PASSWORD_SECRET
+  DB_PASSWORD_SECRET: DB_PASSWORD_SECRET
   NEBULA_CLIENT_TOKEN: DEV_NEBULA_CLIENT_TOKEN
 deploy_rules:
   - environment: dev
