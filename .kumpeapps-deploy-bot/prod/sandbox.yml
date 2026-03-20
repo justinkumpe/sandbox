@@ -1,0 +1,57 @@
+deployment_type: docker
+assigned_username: justinkumpe 
+vm_hostname: dev-sandbox
+domains:
+  - sandbox.dev.kumpe.app
+docker_compose: |
+  services:
+    web:
+      image: ghcr.io/justinkumpe/sandbox:latest
+      container_name: sandbox-website
+      ports:
+        - "80:80"
+      environment:
+        DATABASE_PASSWORD: ${DB_PASSWORD_SECRET}
+      restart: unless-stopped
+      healthcheck:
+        test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:80"]
+        interval: 30s
+        timeout: 10s
+        retries: 3
+        start_period: 10s
+      depends_on:
+        - client
+
+    client:
+      image: ghcr.io/kumpeapps/managed-nebula/client:kumpeapps
+      restart: unless-stopped
+      cap_add:
+        - NET_ADMIN
+      devices:
+        - /dev/net/tun
+      dns:
+        - "8.8.8.8"
+        - "8.8.4.4"
+      environment:
+        SERVER_URL: https://nebula.kumpedns.us:4200/api
+        CLIENT_TOKEN: ${NEBULA_CLIENT_TOKEN}
+        POLL_INTERVAL_HOURS: 1
+      volumes:
+        - ./nebula-config:/etc/nebula
+        - ./nebula-data:/var/lib/nebula
+        - /etc/timezone:/etc/timezone:ro
+      network_mode: host
+caddy:
+  sandbox.conf: |
+    sandbox.kumpe.app {
+      import cloudns_dns
+      reverse_proxy 172.16.19.1
+    }
+env_mappings:
+  DB_PASSWORD_SECRET: DB_PASSWORD_SECRET
+  NEBULA_CLIENT_TOKEN: PROD_NEBULA_CLIENT_TOKEN
+deploy_rules:
+  - environment: prod
+    branches:
+      include: [develop, main]
+      exclude: []
