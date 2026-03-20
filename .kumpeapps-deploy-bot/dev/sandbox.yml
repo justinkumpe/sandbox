@@ -19,6 +19,8 @@ docker_compose: |
         timeout: 10s
         retries: 3
         start_period: 10s
+      depends_on:
+        - client
 
     client:
       image: ghcr.io/kumpeapps/managed-nebula/client:kumpeapps
