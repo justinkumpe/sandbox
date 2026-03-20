@@ -1,8 +1,8 @@
 deployment_type: docker
 assigned_username: justinkumpe 
-vm_hostname: dev-sandbox
+vm_hostname: prod-sandbox
 domains:
-  - sandbox.dev.kumpe.app
+  - sandbox.kumpe.app
 docker_compose: |
   services:
     web:
