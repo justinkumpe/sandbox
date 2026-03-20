@@ -27,6 +27,9 @@ docker_compose: |
         - NET_ADMIN
       devices:
         - /dev/net/tun
+      dns:
+        - "8.8.8.8"
+        - "8.8.4.4"
       environment:
         SERVER_URL: https://nebula.kumpedns.us:4200/api
         CLIENT_TOKEN: ${NEBULA_CLIENT_TOKEN}
