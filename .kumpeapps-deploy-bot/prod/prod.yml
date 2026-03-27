@@ -37,8 +37,6 @@ docker_compose: docker-compose.yml
 # Files are deployed with unique names: {owner}-{env}-{repo}-{fileName}
 # Files without extensions get .caddy added automatically
 # Example: 'main: caddyfile' -> 'kumpeapps-prod-myapp-main.caddy'
-caddy:
-  main: sandbox.caddy
 
 # Inline example:
 # caddy:
