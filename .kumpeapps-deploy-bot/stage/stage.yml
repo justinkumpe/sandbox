@@ -37,7 +37,11 @@ docker_compose: docker-compose.yml
 # Files without extensions get .caddy added automatically
 # Example: 'main: caddyfile' -> 'kumpeapps-stage-myapp-main.caddy'
 caddy:
+<<<<<<< HEAD
   main: sandbox.caddy
+=======
+  main: caddyfile
+>>>>>>> 6d168609e79a42560ae276ad008245782633c26c
 
 # Inline example:
 # caddy:
