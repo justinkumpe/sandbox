@@ -1,0 +1,8 @@
+sandbox.stage.kumpe.app {
+       import cloudns_dns
+       import force_https
+       reverse_proxy {{nebula.ip}}:8080
+       log {
+         output file /var/log/caddy/sandbox-stage.log
+       }
+}
