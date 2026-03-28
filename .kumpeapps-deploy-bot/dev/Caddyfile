@@ -1,5 +1,4 @@
 sandbox.dev.kumpe.app {
-       import cloudns_dns
-       import force_https
+       import ssl_defaults
        reverse_proxy {{nebula.ip}}:8080
 }
