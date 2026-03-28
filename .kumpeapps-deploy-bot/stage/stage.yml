@@ -9,7 +9,7 @@ vm_hostname: sandbox
 # Users will be created on the VM and added to bot-admin group
 authorized_admins:
   - github.repo.admins
-  - github.org.kumpeapps.team.vm_admins
+  - github.org.kumpeapps.team.vm-admins
 
 # Domains for reverse proxy
 domains:
