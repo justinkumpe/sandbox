@@ -34,24 +34,28 @@ docker_compose: docker-compose.yml
 #         LOG_LEVEL: warn
 #       restart: unless-stopped
 
-# Caddy configuration - reference file or inline
-# Files are deployed with unique names: {owner}-{env}-{repo}-{fileName}
-# Files without extensions get .caddy added automatically
-# Example: 'main: caddyfile' -> 'kumpeapps-prod-myapp-main.caddy'
-caddy:
-  main: caddyfile
-
-# Inline example:
-# caddy:
-#   main: |
-#     myapp.example.com, www.myapp.example.com {
-#       import cloudns_dns
-#       import force_https
-#       reverse_proxy {{nebula.ip}}:8080
-#       log {
-#         output file /var/log/caddy/myapp-prod.log
-#       }
-#     }
+# Caddy configuration
+# Place a file named 'Caddyfile' in the same directory as this config file
+# The Caddyfile will be deployed as: {owner}-{repo}-{env}.caddy
+# Example: 'kumpeapps-myapp-prod.caddy'
+#
+# All domains in the Caddyfile must be:
+#   1. Declared in the 'domains' list above
+#   2. In your authorized domains list
+#
+# Caddyfile example:
+# myapp.example.com, www.myapp.example.com {
+#   import cloudns_dns
+#   import force_https
+#   reverse_proxy {{nebula.ip}}:8080
+#   log {
+#     output file /var/log/caddy/myapp-prod.log
+#   }
+# }
+#
+# Available placeholders:
+#   {{vm.ip}} - VM IP address
+#   {{nebula.ip}} - Nebula VPN IP (from PROD_NEBULA_IP secret)
 
 # Environment variable mappings
 # Map container env vars to GitHub repository secrets
