@@ -17,7 +17,7 @@ domains:
 
 # Docker Compose - reference file in same directory
 # Note: Managed Nebula VPN client is automatically injected as the first service
-# You don't need to include it in your docker-compose.yml
+# You don't need to include it in your docker-compose.yml 
 docker_compose: docker-compose.yml
 
 # Inline example:
