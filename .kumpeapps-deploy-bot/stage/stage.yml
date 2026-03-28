@@ -6,7 +6,7 @@ assigned_username: justinkumpe
 vm_hostname: sandbox
 
 # Optional: VM user management
-# Users will be created on the VM and added to bot-admin group
+# Users will be created on the VM and added to bot-admin   group
 authorized_admins:
   - github.repo.admins
   - github.org.kumpeapps.team.vm-admins
